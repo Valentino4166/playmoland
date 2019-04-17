@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section id="Panier">
+    <h1> Votre panier : </h1>
+{% for lignePanier in app.user.panier.lignearticle %}
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h2>{{ lignePanier.lignesPanier.title }}</h2><p>Quantité : {{ lignePanier.quantitearticle }}</p><h3>{{ lignePanier.lignesPanier.prix }} €</h3><img src="{{ lignePanier.lignesPanier.image }}" alt="" height="260" width="370"></li><li><a href="/panier/supprimer/{{ lignePanier.lignesPanier.id }}" class="btn btn-danger">Supprimer</a></li>
+    <br>
+    </ul>
+{% endfor %}
+    <h3> Prix total :  {{ app.user.panier.getTotal() }} € </h3>
+    <h3> Votre commande sera livré à : </h3> <p>{{ app.user.getAdresse() }}<br>{{ app.user.getCp() }}<br>{{ app.user.getVille() }} </p>
+    <a type="submit" href="{{ path('commande') }}" class="btn btn-danger">Passer la commande</a>
+    <br>
+</section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
+

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <article>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata"> Ecrit le {{ article.createdAt | date ('d/m/Y')}} à {{ article.createdAt | date('H:i')}} dans la catégorie {{ article.category.title }} </div>
+        <div class="content">
+            <img src="{{ article.image }}" alt="" height="352" width="470">
+            {{ article.content | raw }}
+            
+            <h3>{{ article.prix }} €</h3>
+        </div>
+    {% if LignePanierForm  %} 
+        {{form_start(LignePanierForm) }}
+        {{form_row(LignePanierForm.quantitearticle, {'attr' : {'placeholder':"Combien ? "}})}}
+            <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+        {{form_end(LignePanierForm)}}
+    {% else  %}
+        <h1> Vous devez être connecter pour ajouter au panier </h1>
+    {% endif %}
+        
+    </article>
+    <section id="commentaires">
+        <h1> commentaires : </h1>
+        <br>
+        {% for comment in article.comments %}
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{comment.author}} : {{comment.content | raw}}
+                <span class="badge badge-primary badge-pill">{{comment.note }}</span>
+            </li>
+        </ul>
+        <br>
+        {% endfor %}
+    
+        {% if app.user %}
+        {% if commentForm %}
+            {{form_start(commentForm) }}
+            {{form_row(commentForm.author, {'label':'Nom'})}}
+            {{form_row(commentForm.content,{'label':'Commentaire'})}}
+            {{form_row(commentForm.note, {'label': 'Notez votre commentaire','attr':{'placeholder':'/5'}})}}
+                <button type="submit" class="btn btn-primary">Laissez un commentaire</button>
+            {{form_end(commentForm)}}
+        {% endif %}
+
+        {% else %}
+            <h2> Vous devez être connecter pour ajouter un commentaire ! </h2>
+            <a href="{{path('security_login')}}" class="btn btn-primary">
+            Connexion</a>
+        {% endif %}
+    </section>
+
+
+{% endblock %}
+
+

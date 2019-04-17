@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} PlaymoLand {% endblock %}
+
+{% block body %}
+<div class="row">
+{% for article in articles %}
+    <article>   
+        <div class="card" style="width: 18rem; margin:1em;">
+            <img class="card-img-top" src="{{ article.image }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ article.title }}</h5>
+                <p class="card-text" font-size="medium">{{ article.content | raw }}</p>
+                <h3 class="card-price">{{ article.prix }} €</h3>
+                <a href="{{ path('blog_show', {'id' : article.id })}}" class="btn btn-primary">Voir l'article</a>
+            </div>
+        </div>
+   </article>
+{% endfor %}
+</div>
+</section>
+{% endblock %}

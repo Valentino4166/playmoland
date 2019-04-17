@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
+
+    {% block body %}
+        <h1> Ajout d'un nouvel article <h1>
+
+        {{ form_start(formArticle) }}
+
+
+        {{ form_row(formArticle.title,{'attr' : { 
+                'placeholder' : "Titre de l'article"}})}}
+        {{ form_row(formArticle.category) }}
+        {{ form_row(formArticle.content,{'attr' : {
+                'placeholder' : "Description de l'article"}})}}
+        {{ form_row(formArticle.image,{'attr' : { 
+                'placeholder' : "Image de l'article "}})}}
+        <div>{{ form_row(formArticle.prix,{'attr' : { 
+                'placeholder' : "Prix de l'article "}})}}<span class="input-group-text">€</span></div>
+
+        <button type="submit" class="btn btn-success">
+        {% if editMode %}
+        Enregistrer
+        {% else %}
+        Ajouter </button>
+        {% endif %}
+
+        {{ form_end(formArticle) }}
+    {%  endblock %}

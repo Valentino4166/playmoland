@@ -1,0 +1,26 @@
+easy_admin:
+  entities:
+    Article:
+      class: App\Entity\Article
+      label: 'Articles'
+      list:
+        fields: ['id', 'title', { property: 'image', type: 'image' }, 'content', 'prix', 'category.title', 'comments']
+      form:
+        fields: ['id', 'title', { property: 'image', type: 'url' }, 'content', 'prix']
+    User:
+      class: App\Entity\User
+      label: 'Clients'
+      list:
+        fields: ['id', 'email', 'username', 'password']
+      form:
+        fields: ['id', 'email', 'username', 'password']
+  site_name: '<img src="/image/playmo.png" alt="" height="80" width="170">'
+  design:
+    assets:
+        # all kinds of assets are supported and linked accordingly
+        css:
+            - 'https://bootswatch.com/4/journal/bootstrap.min.css'
+        favicon:
+            path: '/image/harry.ico.png'
+            mime_type: 'image/png' 
+
