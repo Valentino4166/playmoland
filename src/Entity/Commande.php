@@ -24,7 +24,7 @@ class Commande
     private $prixtotal;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="commandes")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commandes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;

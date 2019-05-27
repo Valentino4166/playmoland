@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Entity\User;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -17,8 +20,9 @@ class CommandeApiController extends FOSRestController
     */
     public function getcommande($id)
     {
+
         $repository = $this->getDoctrine()->getRepository(Commande::class);
-        $userCommandes = $repository->findBy(["client_id" => $id]);
+        $userCommandes = $repository->findBy(["client" => $id]);
 
         $allcommandes = [];
         foreach ($userCommandes as $commande) {
