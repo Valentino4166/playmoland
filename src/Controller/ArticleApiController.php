@@ -10,7 +10,7 @@ use App\Entity\User;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Article;
-use Proxies__CG__\App\Entity\Category;
+use App\Entity\Category;
 use App\Entity\Commande;
 use App\Entity\Contenucommande;
 use Symfony\Component\HttpFoundation\Request;
